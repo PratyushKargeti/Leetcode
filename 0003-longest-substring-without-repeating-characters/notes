@@ -1,0 +1,35 @@
+unordered_map<char, int> m; is an unordered map (hashmap) that will store characters as keys and their corresponding indices
+as values. This map helps us keep track of the most recent occurrence of each character.
+
+int r = 0, l = 0, ans = 0; declares and initializes variables r, l, and ans. r represents the right index of the 
+current substring, l represents the left index of the current substring, and ans stores the length of the longest substring without repeating characters.
+
+The for loop iterates through each character in the string s using the variable r as the index.
+
+Inside the loop:
+
+if (m[s[r]] > 0) checks if the current character s[r] already exists in the hashmap m. If the value is 
+greater than 0, it means the character is repeating.
+
+When a repeating character is found, we update the left index l to be the maximum of its current value (l) and the
+index of the repeating character in the hashmap m[s[r]].
+
+This ensures that the left index l moves to the right, excluding the previous occurrence of the repeating character from the current substring.
+
+We update the hashmap m[s[r]] with the current index r + 1, indicating that the character s[r] is at position r + 1 in the substring.
+
+By storing the current index plus one, we ensure that the value in the hashmap is always positive and differentiates it 
+from characters that have not been encountered yet.
+
+We calculate the length of the current substring as m[s[r]] - l.
+
+The difference between the current index r plus one (stored in the hashmap) and the left index l gives the number of unique characters in the substring.
+We update ans to be the maximum of its current value and the length of the current substring.
+
+This ensures that ans always stores the length of the longest substring found so far.
+The loop continues until all characters in the string have been processed.
+
+Finally, we return the value of ans, which represents the length of the longest substring without repeating characters.
+
+By utilizing the hashmap m, we can efficiently keep track of the most recent occurrence of each character 
+and update the left index l accordingly. This approach allows us to find the length of the longest substring without repeating characters.
