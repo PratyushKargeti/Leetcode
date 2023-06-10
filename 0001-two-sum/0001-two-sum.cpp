@@ -12,7 +12,7 @@ public:
         // return {-1,-1};
 
         // Iterate through the array and check for complements
-        map<int,int> m;
+        unordered_map<int,int> m;
         for(int i = 0; i < nums.size(); i++)
         {
             int complement=target-nums[i];
