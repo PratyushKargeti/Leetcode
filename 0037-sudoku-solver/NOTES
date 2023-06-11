@@ -1,0 +1,47 @@
+The given code is an implementation of the Sudoku-solving algorithm using a backtracking approach. 
+It solves the Sudoku puzzle represented by a 9x9 grid using a recursive function called solve.
+
+Let's go through the code step by step:
+
+The issafe function checks if it is safe to place the character ch at position (i, j) on the Sudoku board.
+It checks three conditions:
+
+No other cell in the same row contains the same character ch.
+No other cell in the same column contains the same character ch.
+No other cell in the same 3x3 subgrid contains the same character ch.
+If any of these conditions are violated, the function returns false, indicating that it is not safe to place the character. Otherwise, it returns true.
+
+The solve function is the main recursive function that solves the Sudoku puzzle.
+It iterates through each cell of the board and checks if it is empty (represented by '.').
+If an empty cell is found, it tries to place a digit from 1 to 9 in that cell using a loop.
+
+It calls the issafe function to check if it is safe to place the digit in the current cell.
+If it is safe, it places the digit in the current cell, updates the board, and makes a recursive call to solve to continue solving the rest of the board.
+If the recursive call returns true, it means the puzzle has been successfully solved, so it returns true.
+If the recursive call returns false, it means the current digit placement leads to an invalid solution,
+so it backtracks by resetting the current cell to '.' and tries the next digit.
+
+Let's break down the code block to understand its flow:
+
+The if(board[i][j]=='.') condition checks if the current cell is empty (represented by '.').
+
+If the cell is empty, it enters the for loop, which iterates over the digits from '1' to '9' and tries to place each digit in the current cell.
+
+Inside the for loop, the if(issafe(i,j,board,ch)) condition checks if it is safe to place the digit ch in the current cell. 
+If it is safe, the digit is placed in the cell (board[i][j] = ch), and the solve function is recursively called to continue solving the rest of the board.
+
+If the recursive call to solve(board) returns true, it means a valid solution has been found, so the return true; statement is reached, and
+the solution is propagated up the call stack.
+
+If the recursive call to solve(board) returns false, it means that the current digit placement did not lead to a valid solution. 
+In this case, the algorithm backtracks by resetting the current cell to '.' (undoing the previous placement) and continues to the 
+next digit in the for loop to explore other possibilities.
+
+If none of the digits in the for loop lead to a valid solution, the return false; statement is reached after the loop ends. 
+This indicates that the current partial placement of digits does not lead to a valid solution. 
+The algorithm will propagate this information up the call stack, triggering backtracking at previous recursive levels until a 
+valid solution is found or all possibilities have been exhausted.
+
+In summary, the return false; statement at the end of the code block is reached when all digit placements in the current 
+cell have been tried and none of them lead to a valid solution. It signals to the previous recursive call that the current 
+path is invalid, and the algorithm needs to backtrack and explore other possibilities.
