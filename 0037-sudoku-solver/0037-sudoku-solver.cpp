@@ -1,17 +1,21 @@
 class Solution {
-    bool issafe(int i,int j,vector<vector<char>>&board,char ch){
-        for(int t=0;t<9;t++)
+public:
+    bool issafe(vector<vector<char>>&board,int i,int j,char ch)
+    {
+        for(int p=0;p<9;p++)
         {
-            if(board[t][j]==ch)//SAME COLUMN CHECK
+            if(board[i][p]==ch) //same row check
                 return false;
-            if(board[i][t]==ch) //SAME ROW CHECK
+            if(board[p][j]==ch) //same column check
                 return false;
-            if(board[3*(i/3)+t/3][3*(j/3)+t%3]==ch) //SAME BLOCK CHECK
+            if(board[(i/3)*3+p/3][(j/3)*3+p%3]==ch)  //same block check
                 return false;
         }
         return true;
     }
-    bool solve(vector<vector<char>>&board){
+
+    bool solve(vector<vector<char>>& board)
+    {
         for(int i=0;i<9;i++)
         {
             for(int j=0;j<9;j++)
@@ -20,21 +24,21 @@ class Solution {
                 {
                     for(char ch='1';ch<='9';ch++)
                     {
-                        if(issafe(i,j,board,ch))
+                        if(issafe(board,i,j,ch))
                         {
-                            board[i][j]=ch;
-                            if(solve(board)==true) //continue solving the rest of the board
-                                return true;
-                            board[i][j]='.'; //CURRENT DIGIT WAS INVALID
+                            board[i][j]=ch;  
+                            if(solve(board)==true) //solve rest of the board
+                                return true; 
+                            board[i][j]='.'; //current digit is invalid
                         }
                     }
-                    return false;
+                    return false;  //if no digit was valid on current empty cell
                 }
             }
         }
         return true;
     }
-public:
+
     void solveSudoku(vector<vector<char>>& board) {
         solve(board);
     }
