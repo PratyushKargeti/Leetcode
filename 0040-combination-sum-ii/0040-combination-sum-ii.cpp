@@ -10,10 +10,10 @@ public:
         }
         for(int i=index;i<arr.size();i++)
         {
+            if(arr[i]>target)
+                return;
             if(i>index && arr[i]==arr[i-1])
                 continue;
-            if(arr[i]>target)
-                break;
             v.push_back(arr[i]);
             solve(i+1,ans,v,target-arr[i],arr);
             v.pop_back();
