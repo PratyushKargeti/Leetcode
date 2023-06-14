@@ -1,5 +1,6 @@
 class Solution {
 public:
+    //this is simple dfs->marking the visited cells with -1 and counting the cells we passed.
     int solve(int i,int j,int m,int n,int validsteps,vector<vector<int>>&grid,int valcount)
     {
         if(i<0 || j<0 || i>m-1 || j> n-1 || grid[i][j]==-1)
