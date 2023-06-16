@@ -21,7 +21,7 @@ public:
     //     return ans;
     // }
     int tribonacci(int n) {
-        vector<long long>dp(n+3,-1);
+        vector<long long>dp(n+3);
         dp[0]=0;
         dp[1]=1;
         dp[2]=1;
