@@ -7,8 +7,7 @@ public:
         {
             minsofar=min(minsofar,nums[i]);
             int currentprofit=nums[i+1]-minsofar;
-            maxprof=max(maxprof,currentprofit);
-            
+            maxprof=max(maxprof,currentprofit);   
         }
         return maxprof;
     }
