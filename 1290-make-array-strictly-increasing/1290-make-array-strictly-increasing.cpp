@@ -7,9 +7,9 @@ public:
         if(dp[i][j] != -1)
             return dp[i][j];    
         if(j>=m && prev>=arr1[i])
-            return 2001;
+            return 2001; // returning value greater than arr1.length,i.e,2000
         int take = 2001,nottake = 2001;
-        if(j!=m)
+        if(j<m)
             take = 1 + solve(i+1,j+1,n,m,arr2[j],dp,arr1,arr2);
         if(prev<arr1[i])
             nottake = solve(i+1,j,n,m,arr1[i],dp,arr1,arr2);
