@@ -1,0 +1,69 @@
+
+
+1. `bool issafe(int currRow, vector<int>& col)`: This function determines whether it is safe to place a queen at the current position
+(`currRow`, `col[currRow]`) on the chessboard. It takes the current row `currRow` and a reference to the `col` vector as parameters. 
+The `col` vector represents the column positions of the queens placed so far.
+
+   - The function iterates over the previously placed queens (from row 0 to `currRow - 1`).
+   - For each previously placed queen, it checks if there is a conflict with the current queen based on two conditions:
+  - `col[currRow] == col[row]`: If the current queen and the previously placed queen share the same column, it indicates a conflict.
+  - `abs(col[currRow] - col[row]) == currRow - row`: If the absolute difference between the column positions of the current and previously placed queens 
+        is equal to the difference in their row positions, it indicates a conflict.
+   - If either of these conditions is true for any previously placed queen, the function returns `false`, indicating that the current position is not safe.
+   - If no conflicts are found, the function returns `true`, indicating that it is safe to place a queen at the current position.
+
+2. `void place(int i, int n, vector<int>& col, vector<string>& board, vector<vector<string>>& ans)`: This function is a helper function for solving
+the N-Queens problem using backtracking. It takes the current row `i`, the board size `n`, references to the `col` and `board` vectors, and a reference to
+the `ans` vector (which stores the solutions).
+
+   - The purpose of this function is to recursively explore all possible valid placements of queens on the chessboard and record the solutions in the `ans` vector.
+   - The function uses a depth-first search approach with backtracking.
+   - If the current row `i` is equal to `n`, it means all rows have been filled with queens, and a valid solution is found.
+     - In this case, the current board configuration (`board`) is added to the `ans` vector using `ans.push_back(board)`.
+     - The function then returns to explore other possibilities.
+   - If the current row `i` is less than `n`, the function proceeds to the next row and tries placing a queen in each column of the current 
+row (`board[i][j]`) using a loop.
+     - For each column position `j`, it assigns the current column position `j` to `col[i]` to keep track of the queen's position in the current row.
+     - It checks if placing a queen at the current position is safe by calling the `issafe` function. If it is safe, the function proceeds.
+       - It updates the `board` by placing a queen at the current position (`board[i][j] = 'Q'`).
+       - It makes a recursive call to the `place` function with the next row (`i + 1`) to explore the placements in the subsequent row.
+       - After the recursive call returns, it backtracks by removing the queen from the current position (`board[i][j] = '.'`).
+     - The loop continues to explore other column positions, repeating the process for each position in the current row.
+   - By exploring all possibilities, the function eventually finds all valid solutions and stores them in the `ans` vector.
+
+3. `vector<vector<string>> solveNQueens(int n)`: This is the main function that solves the N-Queens problem. It takes the
+
+ board size `n` as a parameter and returns a vector of vectors (`vector<vector<string>>`) representing the solutions.
+
+   - Inside the function:
+     - It initializes the `col` vector with `n` elements, representing the column positions of the queens in each row.
+     - It initializes the `board` vector with `n` strings, each of length `n`, and fills them with '.' characters to represent empty cells on the chessboard.
+     - It initializes the `ans` vector, which will store the solutions.
+     - It calls the `place` function with the initial row `i = 0`, passing the `col`, `board`, and `ans` vectors as parameters.
+     - After the backtracking process is completed, the `ans` vector contains all valid solutions.
+     - Finally, the function returns the `ans` vector containing the solutions to the N-Queens problem.
+
+In summary, the `issafe` function checks whether it is safe to place a queen at the current position by checking for conflicts with previously 
+placed queens. The `place` function recursively explores all possible placements and records valid solutions using backtracking. The `solveNQueens` 
+function initializes the necessary data structures and calls the `place` function to solve the N-Queens problem.
+
+if queen is placed at current position and later on removed, then how this code this ans as a board filled with some queens as required?
+
+In the provided code, the backtracking process is used to explore all possible placements of queens on the chessboard. When a valid placement
+is found, the code marks the corresponding cell on the board as 'Q' to represent a queen. However, after exploring that particular placement and
+backtracking, the code resets the cell back to '.' to remove the queen from that position.
+
+The reason for removing the queen from the board during backtracking is to ensure that all possible configurations are explored. 
+By resetting the cell to '.', the code can try different placements for the current row in subsequent iterations of the loop. 
+This process continues until all possible configurations have been explored, and the code records valid solutions by adding the board configurations to the ans vector.
+Therefore, at the end of the execution, the ans vector will contain all valid solutions to the N-Queens problem, where each solution represents a
+board configuration with queens placed according to the problem constraints.
+
+Again,In the base case, the current board configuration (board) is added to the ans vector as a valid solution.
+Otherwise, for each column j in the current row i, the code tries to place a queen at position (i, j):
+It sets the j-th element of the col vector to j, indicating that a queen is placed at column j of row i.
+It checks if it is safe to place a queen at the current position using the issafe function.
+If it is safe, it marks the corresponding cell on the board as 'Q' to represent the queen.
+It recursively calls the place function with the next row i + 1.
+After the recursive call returns, the code resets the cell back to '.' to remove the queen from that position.
+After exploring all possible placements and backtracking, the ans vector will contain all valid solutions.
