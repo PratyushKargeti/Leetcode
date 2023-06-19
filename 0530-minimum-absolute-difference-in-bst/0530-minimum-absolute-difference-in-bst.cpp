@@ -17,11 +17,11 @@ public:
         if(root==NULL)
             return;
         inorder(root->left);
-        v.push_back(root->val);
+        v.push_back(root->val);  //jUST USE VECTOR to store them
         inorder(root->right);
     }
     int getMinimumDifference(TreeNode* root) {
-         inorder(root);  
+        inorder(root);     //The inorder traversal provides a way to retrieve the elements of a BST in a sorted order(ascending). This property is a key characteristic of binary search trees and is useful for various operations and algorithms that rely on sorted data. 
          int ans=INT_MAX;
          for(int i=1;i<v.size();i++)
          {
