@@ -1,38 +1,43 @@
 class Solution {
-private:
-    bool canPlace(int currRow, vector<int>& a) {
-        for(int row = 0; row < currRow; row++)
-            if(a[currRow] == a[row] || abs(a[currRow]-a[row]) == currRow-row) 
+public:
+    bool issafe(int currRow,vector<int>&col)
+    {
+        for(int row=0;row < currRow;row++)
+        {
+            if(col[currRow]==col[row] || abs(col[currRow]-col[row])==currRow-row)
                 return false;
+        }
         return true;
     }
-    
-    void dfs(int i, int n, vector<int>& a, vector<string>& v, vector<vector<string>>& res) {
-        if(i == n){
-            res.push_back(v);
+    void place(int i,int n,vector<int>&col,vector<string>&board,vector<vector<string>>&ans)
+    {
+        if(i==n)
+        {
+            ans.push_back(board);
             return;
         }
-        for(int col = 0; col < n; col++)
+        for(int j=0;j<n;j++)
         {
-            a[i] = col;
-            if(canPlace(i, a))
+            col[i]=j;
+            if(issafe(i,col))
             {
-                v[i][col] = 'Q';
-                dfs(i+1, n, a, v, res);
-                v[i][col] = '.';
+                board[i][j]='Q';
+                place(i+1,n,col,board,ans);
+                board[i][j]='.';
             }
         }
     }
-public:
+
     vector<vector<string>> solveNQueens(int n) {
-        vector<int> a(n);
-        vector<string> v(n);
-        vector<vector<string>> res;
-        
-        for(int i = 0; i < n; i++) 
-            v[i] = string(n, '.');
-        
-        dfs(0, n, a, v, res);
-        return res;
+        vector<int>col(n);
+        vector<string> board(n);
+        vector<vector<string>>ans;
+        for(int i=0;i<n;i++)
+        {
+            board[i]=string(n,'.');
+        }
+        place(0,n,col,board,ans);
+        return ans;
     }
 };
+
