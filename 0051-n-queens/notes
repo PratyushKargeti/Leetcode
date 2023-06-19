@@ -67,3 +67,44 @@ If it is safe, it marks the corresponding cell on the board as 'Q' to represent 
 It recursively calls the place function with the next row i + 1.
 After the recursive call returns, the code resets the cell back to '.' to remove the queen from that position.
 After exploring all possible placements and backtracking, the ans vector will contain all valid solutions.
+
+After the recursive call returns, the code reaches the backtracking step. It resets the cell in board back to '.' 
+(empty cell) to remove the queen from the previous position. This allows the function to backtrack and explore other possible placements.
+
+The function continues the iteration over the column positions for the current row and repeats the process until all possibilities have been explored.
+In the context of the N-Queens problem, "other possible placements" refer to different valid positions where a queen can be placed on the chessboard. The algorithm systematically explores these positions by backtracking.
+
+Here's how the exploration process works:
+
+1. The algorithm starts with an empty chessboard and attempts to place a queen in the first row (row 0) at each column position 
+
+(0 to n-1), where n is the size of the chessboard (number of rows/columns).
+
+2. For each column position in the first row, the algorithm checks if it is safe to place a queen at that position by calling the `issafe` 
+function. If it is safe, the algorithm marks that cell as a queen ('Q') in the `board` vector and moves on to the next row (row 1).
+
+3. In the next row, the algorithm again tries to place a queen at each column position, considering only the valid positions based on the constraints of
+the N-Queens problem. This process continues row by row until all rows have been processed.
+
+4. If at any point the algorithm finds that a queen cannot be placed in a specific row/column position without violating the constraints, it 
+backtracks to the previous row and explores other possible positions for the queen in that row.
+
+5. This backtracking process continues until all possible configurations have been explored, and the algorithm has either found all valid solutions 
+or exhausted all possibilities.
+
+
+
+
+During the backtracking process, when the algorithm determines that a queen cannot be placed in a specific row/column position without
+violating the constraints, it backtracks to the previous row. At this point, the algorithm resets the cell in the `board` vector back to '.' 
+(empty cell) to remove the queen from that position.
+
+By resetting the cell back to '.', the algorithm effectively undoes the previous queen placement and creates an opportunity to explore other 
+possible positions for the queen in that row. It allows the algorithm to backtrack and try alternative placements for the queen in the previous row.
+
+The backtracking mechanism, combined with resetting the cell to '.', enables the algorithm to systematically explore different combinations of 
+queen placements on the chessboard until it finds all valid solutions. It allows the algorithm to try different possibilities, backtrack when necessary, 
+and continue exploring other potential placements.
+
+So, the "other possible placements" refer to the different valid positions where a queen can be placed on the chessboard in each row, and the 
+algorithm explores these positions iteratively through recursive calls and backtracking until it finds all valid solutions to the N-Queens problem.
