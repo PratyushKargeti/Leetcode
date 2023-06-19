@@ -1,0 +1,121 @@
+
+
+```cpp
+class Solution {
+public:
+    TreeNode* createNode(int val)
+    {
+        TreeNode* newnode = new TreeNode;
+        newnode->val = val;
+        newnode->left = nullptr;
+        newnode->right = nullptr;
+        return newnode;
+    }
+    TreeNode* insertIntoBST(TreeNode* root, int val) {
+        if(root == nullptr) 
+            return createNode(val);
+        if(val < root->val) 
+            root->left = insertIntoBST(root->left, val);
+        else if(val > root->val) 
+            root->right = insertIntoBST(root->right, val);
+        return root;
+    }
+};
+```
+
+This code defines a class named `Solution` which contains two member functions: `createNode` and `insertIntoBST`. 
+The `insertIntoBST` function inserts a new node with a given value into a binary search tree (BST). Let's go through the code in more detail.
+
+The `createNode` function is a helper function used to create a new `TreeNode` object with the given value. It allocates memory for 
+a new node, assigns the value to the `val` member variable, and sets the left and right child pointers to `nullptr`. 
+Finally, it returns the newly created node.
+
+The `insertIntoBST` function takes two parameters: `root` and `val`. `root` represents the root node of the BST, and `val` is the value 
+to be inserted into the BST. The function returns the modified BST after inserting the new value.
+
+Here's how the insertion process works:
+
+1. The function checks if the `root` is `nullptr`, which means the tree is empty. If the tree is empty, it calls the `createNode` function 
+to create a new node with the given `val` and returns the newly created node. This effectively becomes the root of the BST.
+
+2. If the `root` is not `nullptr`, it compares the `val` with the value of the current node (`root->val`). Based on the comparison, one of the 
+following actions is taken:
+   - If `val` is less than the current node's value (`val < root->val`), it means the new value should be inserted in the left subtree. The function 
+recursively calls `insertIntoBST` with the left child of the current node (`root->left`) and the same `val`. The return value of this recursive call is 
+assigned as the new left child of the current node (`root->left = insertIntoBST(root->left, val)`).
+   - If `val` is greater than the current node's value (`val > root->val`), it means the new value should be inserted in the right subtree. The function
+recursively calls `insertIntoBST` with the right child of the current node (`root->right`) and the same `val`. The return value of this recursive call is
+assigned as the new right child of the current node (`root->right = insertIntoBST(root->right, val)`).
+
+3. After the appropriate subtree is updated with the new node, the function returns the `root` node, which represents the modified BST.
+
+To summarize, the `insertIntoBST` function inserts a new node with the given value into the BST by recursively traversing the tree and 
+updating the left or right child of each node based on the comparison of values. The function returns the modified BST after the insertion.
+
+Let's dive deeper into the step where the appropriate subtree is updated with the new node and the function returns the root node, which represents the modified BST.
+
+Here's the relevant part of the code for reference:
+```cpp
+if(val < root->val) 
+    root->left = insertIntoBST(root->left, val);
+else if(val > root->val) 
+    root->right = insertIntoBST(root->right, val);
+return root;
+```
+
+When a new value `val` needs to be inserted into the BST, the function compares `val` with the value of the current node 
+(`root->val`). Based on the comparison, one of the following actions is taken:
+
+1. If `val` is less than the current node's value (`val < root->val`), it means the new value should be inserted in the left subtree.
+In this case, the function makes a recursive call to `insertIntoBST` with the left child of the current node (`root->left`) and the same `val`:
+
+```cpp
+root->left = insertIntoBST(root->left, val);
+```
+
+The return value of this recursive call is assigned as the new left child of the current node (`root->left`). This effectively updates 
+the left subtree of the current node with the newly inserted node.
+
+2. If `val` is greater than the current node's value (`val > root->val`), it means the new value should be inserted in the right subtree. 
+In this case, the function makes a recursive call to `insertIntoBST` with the right child of the current node (`root->right`) and the same `val`:
+
+```cpp
+root->right = insertIntoBST(root->right, val);
+```
+
+The return value of this recursive call is assigned as the new right child of the current node (`root->right`). This effectively 
+updates the right subtree of the current node with the newly inserted node.
+
+3. After the appropriate subtree is updated with the new node, the function simply returns the `root` node:
+
+```cpp
+return root;
+```
+
+This step is crucial because it ensures that the modifications made during the insertion process are reflected in the overall structure of the
+BST. By returning the `root` node, which is the same node that was passed as an argument to the function, the function effectively returns the modified BST.
+
+To summarize, the step of updating the appropriate subtree with the new node and returning the `root` node ensures that the modifications
+made during the insertion process are properly reflected in the BST structure. This step is crucial for maintaining the correct organization 
+and balance of the BST.
+
+The function returns to the root node through a process known as backtracking. Let's explore this in more detail.
+
+During the insertion process, when the function reaches a certain node in the BST and determines that the new value 
+should be inserted in the left or right subtree, it makes a recursive call to insertIntoBST with the appropriate child node
+and the same val. This recursive call effectively moves down the tree to continue the insertion process in the respective subtree.
+
+Once the recursive call is made and the appropriate subtree is updated with the new node, the function reaches the return root; statement.
+At this point, the recursive call has completed, and the function backtracks to the previous level of recursion.
+
+When the function backtracks, it returns the root node to its parent recursive call. This means that the value of root returned by the child
+recursive call becomes the new left or right child of the current node in the parent recursive call, depending on whether the new value should be 
+inserted in the left or right subtree.
+
+By repeating this process of making recursive calls, updating subtrees, and returning the modified root node, the function effectively constructs the 
+modified BST. The root node, which is the same node that was initially passed as an argument to the function, eventually reaches the top-level recursive 
+call and is returned as the final result.
+
+In summary, the function returns to the root node through backtracking. It uses recursive calls to traverse down the tree, modify subtrees, and then
+backtracks to return the modified root node to the parent recursive call. This process ensures that the modifications made during the insertion process 
+are properly reflected in the overall structure of the BST.
