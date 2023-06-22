@@ -1,9 +1,10 @@
 class Solution {
 public:
     int findLongestChain(vector<vector<int>>& pairs) {
+        //similar to activity selection problem
         sort(pairs.begin(),pairs.end(),[&](vector<int>a,vector<int>b)
         {
-            return a[1]<b[1];
+            return a[1]<b[1];  //sort based on ending time
         });
         int cmp=INT_MIN;
         int count=0;
