@@ -17,21 +17,21 @@ public:
                 }
             }
         }   
-                        for(int i=0;i<v.size();i++)
-        {
-            for(int j=0;j<v[0].size();j++)
-                cout<<v[i][j]<<" ";
-            cout<<endl;
-        }
+        // for(int i=0;i<v.size();i++)
+        // {
+        //     for(int j=0;j<v[0].size();j++)
+        //         cout<<v[i][j]<<" ";
+        //     cout<<endl;
+        // }
         sort(v.begin(),v.end());
-cout<<"------\n";
+        // cout<<"------\n";
         v.erase(unique(v.begin(),v.end()),v.end());
-                for(int i=0;i<v.size();i++)
-        {
-            for(int j=0;j<v[0].size();j++)
-                cout<<v[i][j]<<" ";
-            cout<<endl;
-        }
+        // for(int i=0;i<v.size();i++)
+        // {
+        //     for(int j=0;j<v[0].size();j++)
+        //         cout<<v[i][j]<<" ";
+        //     cout<<endl;
+        // }
         return v.size();
         //return count;
     }
