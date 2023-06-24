@@ -15,7 +15,8 @@ public:
                     ans++;
             }
             return ans;
-//      //   brute force
+    }
+//      //   brute force (not affective)
 //         int count=0;
 //         vector<vector<int>>v;
 //         for(int i=0;i<nums.size();i++)
@@ -48,7 +49,4 @@ public:
 //         //     cout<<endl;
 //       //  // }
 //         return v.size();
-
-
-    }
 };
