@@ -1,0 +1,5 @@
+notes:
+--If k is greater than 0 and m contains the key i.first - k, increment ans. This handles the case where
+the difference between the current number and the target number (i.first - k) satisfies the k-diff condition.
+--If k is equal to 0 and the frequency (i.second) is greater than 1, increment ans. This handles the case where we have
+multiple occurrences of the same number, which satisfies the k-diff condition.
