@@ -1,6 +1,7 @@
 class Solution {
 public:
     int eraseOverlapIntervals(vector<vector<int>>& nums) {
+        //simple activity selection
         sort(nums.begin(),nums.end(),[&](vector<int>&a,vector<int>&b){
             return a[1]<b[1];
         });
