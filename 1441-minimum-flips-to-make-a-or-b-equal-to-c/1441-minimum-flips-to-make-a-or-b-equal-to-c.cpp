@@ -6,7 +6,7 @@ public:
         int ans=0;
         while(a!=0 | b!=0 | c!=0)
         {
-            int x=a&1;
+            int x=a&1; // this operation assigns LSB of a to x
             int y=b&1;
             int z=c&1;
             if(z==1)
