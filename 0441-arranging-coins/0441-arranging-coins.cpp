@@ -9,12 +9,8 @@ public:
             count++;
         }
         if(num==0)
-        {
             return count;
-        }
         else
-        {
             return count-1;
-        }
     }
 };
