@@ -1,3 +1,3 @@
-class Solution(object):
-    def stoneGame(self, piles):
+class Solution:
+    def stoneGame(self, piles: List[int]) -> bool:
         return True
