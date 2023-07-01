@@ -12,7 +12,6 @@ public:
         solve(nums,n,ind+1,v);
         v.pop_back();
         solve(nums,n,ind+1,v);
-        return;
     }
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<int>v;
