@@ -4,13 +4,14 @@ public:
     {
         if(ind==nums.size())
         {
-            if(target==0)
+            if(target==0) //we simple push and return
             {
                 ans.push_back(ds);
             }
-            return;
+            return; //if target is not zero - invalid combination so return to
+            //return to previous call
         }
-        //pick case
+        //pick case condition
         if(nums[ind]<=target)
         {
             ds.push_back(nums[ind]);
