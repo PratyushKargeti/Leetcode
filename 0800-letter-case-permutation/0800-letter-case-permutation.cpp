@@ -11,7 +11,7 @@ public:
         solve(s,ind+1);
         if(isalpha(s[ind]))
         {
-            s[ind] ^= (1 << 5);
+            s[ind] ^= 32;
             solve(s, ind + 1);
         }
     }
