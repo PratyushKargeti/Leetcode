@@ -1,29 +1,26 @@
 class Solution {
 public:
-    void generateCombinations(vector<int>& arr, vector<int>& ss, vector<vector<int>>& res,int i) 
-{
-    if(i == arr.size()) 
+    void solve(int ind,vector<int>&ds,vector<int>&nums,vector<vector<int>>&ans)
     {
-        res.push_back(ss);
-        return;
+        if(ind==nums.size())
+        {
+            ans.push_back(ds);
+            return;
+        }
+        ds.push_back(nums[ind]);
+        solve(ind+1,ds,nums,ans);
+        ds.pop_back();
+        solve(ind+1,ds,nums,ans);
     }
-    else
-    {
-        ss.push_back(arr[i]);
-        generateCombinations(arr, ss, res,i+1);
-        ss.pop_back();
-        generateCombinations(arr, ss, res,i+1);
-    }
-}
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        sort(nums.begin(), nums.end()); // sort the input vector
-        vector<int> ss;
-        vector<vector<int>> res;
-        generateCombinations(nums, ss, res, 0);
-        // remove duplicate subsets
-        sort(res.begin(), res.end()); // sort the result    
-        res.erase(unique(res.begin(), res.end()), res.end()); // erase duplicates
-        return res;
-}
-
+        sort(nums.begin(),nums.end());
+        vector<int>ds;
+        vector<vector<int>>ans;
+        solve(0,ds,nums,ans);
+        set<vector<int>>S;
+        S.insert(ans.begin(),ans.end());
+        ans.clear();
+        ans.assign(S.begin(),S.end());
+        return ans;
+    }
 };
