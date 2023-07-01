@@ -7,11 +7,11 @@ public:
             ans.push_back(ds);
             return;
         }
-        for(int i=ind;i<cand.size();i++)
+        for(int i=ind;i<cand.size() && cand[i]<=target ;i++)
         { //we will reduce target
             if(i>ind && cand[i]==cand[i-1]) continue;
-            if(cand[i]>target)
-                break;
+            // if(cand[i]>target)
+            //     break;
             ds.push_back(cand[i]);
             solve(i+1,target-cand[i],ds,cand,ans);
             ds.pop_back(); //to go back to previous state
