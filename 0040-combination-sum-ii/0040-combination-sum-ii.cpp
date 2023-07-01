@@ -8,11 +8,12 @@ public:
             return;
         }
         for(int i=ind;i<cand.size() && cand[i]<=target ;i++)
-        { //we will reduce target
-            if(i>ind && cand[i]==cand[i-1]) continue;
-            // if(cand[i]>target)
-            //     break;
+        { 
+            if(i>ind && cand[i]==cand[i-1]) continue; 
+            //i>ind condition is added for a condition where i==ind in      beginnning of rec call and cand[i]==cand[i-1] in that case cand[i] should be added if cand[i]<=target
+
             ds.push_back(cand[i]);
+            //we will reduce target
             solve(i+1,target-cand[i],ds,cand,ans);
             ds.pop_back(); //to go back to previous state
         }
