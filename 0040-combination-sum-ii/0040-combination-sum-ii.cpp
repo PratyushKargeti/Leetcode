@@ -1,29 +1,58 @@
 class Solution {
 public:
-
-    void solve(int index,vector<vector<int>>&ans,vector<int>&v,int target,vector<int>&arr)
+    void solve(int ind,int target,vector<int>&ds,vector<int>&cand,vector<vector<int>>&ans)
     {
         if(target==0)
-        {
-            ans.push_back(v);
+        {        
+            ans.push_back(ds);
             return;
         }
-        for(int i=index;i<arr.size();i++)
-        {
-            if(arr[i]>target)
-                return;
-            if(i>index && arr[i]==arr[i-1])
-                continue;
-            v.push_back(arr[i]);
-            solve(i+1,ans,v,target-arr[i],arr);
-            v.pop_back();
+        for(int i=ind;i<cand.size();i++)
+        { //we will reduce target
+            if(i>ind && cand[i]==cand[i-1]) continue;
+            if(cand[i]>target)
+                break;
+            ds.push_back(cand[i]);
+            solve(i+1,target-cand[i],ds,cand,ans);
+            ds.pop_back(); //to go back to previous state
         }
     }
-    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-        vector<vector<int>>ans;
-        vector<int>v;
-        sort(candidates.begin(),candidates.end());
-        solve(0,ans,v,target,candidates);
-        return ans;
-    }  
+    vector<vector<int>> combinationSum2(vector<int>& cand, int target) {
+      sort(cand.begin(),cand.end()); //compulsory step
+      vector<vector<int>>ans;
+      vector<int>ds;
+      solve(0,target,ds,cand,ans);
+      return ans;
+  }
+    //TLE BRUTE FORCE BEST TRY
+    // void solve(int ind,int target,vector<int>&ds,vector<int>&cand,set<vector<int>>&ans)
+    // {
+    //     if(ind==cand.size())
+    //     {
+    //         if(target==0)
+    //         {
+    //             ans.insert(ds);
+    //         }
+    //         return;
+    //     }
+    //     if(cand[ind]<=target)
+    //     {
+    //         ds.push_back(cand[ind]);
+    //         solve(ind+1,target-cand[ind],ds,cand,ans);
+    //         ds.pop_back();
+    //     }
+    //     solve(ind+1,target,ds,cand,ans);
+    // }
+    // vector<vector<int>> combinationSum2(vector<int>& cand, int target) {
+    //     sort(cand.begin(),cand.end());
+    //     set<vector<int>>ans;
+    //     vector<int>ds;
+    //     solve(0,target,ds,cand,ans);
+    //     vector<vector<int>>res;
+    //     for(auto i:ans)
+    //     {
+    //         res.push_back(i);
+    //     }
+    //     return res;
+    // }
 };
