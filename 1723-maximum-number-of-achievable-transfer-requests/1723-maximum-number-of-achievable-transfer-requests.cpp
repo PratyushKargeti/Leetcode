@@ -13,11 +13,11 @@ public:
             return;           
         }
         //pick
-        in[requests[ind][0]]--;
-        in[requests[ind][1]]++;
-        solve(ind+1,count+1,in,requests,n,ans);
         in[requests[ind][0]]++;
         in[requests[ind][1]]--;
+        solve(ind+1,count+1,in,requests,n,ans);
+        in[requests[ind][0]]--;
+        in[requests[ind][1]]++;
         //not pick
         solve(ind+1,count,in,requests,n,ans);
     }
