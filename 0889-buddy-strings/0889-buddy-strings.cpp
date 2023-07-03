@@ -18,7 +18,6 @@ public:
         int secondind=-1;
         for(int i=0;i<s.size();i++)
         {
-          
             if(s[i]!=goal[i])
                 if(firstind==-1)
                     firstind=i;
