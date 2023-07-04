@@ -1,23 +1,43 @@
 class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
-        vector<set<int>> row(9);
-        vector<set<int>> col(9);
-        vector<set<int>> block(9);
-        for(int i=0;i<9;i++)
-        {
-            for(int j=0;j<9;j++)
-            {
-                if(board[i][j]=='.')
-                    continue;
-                int curr=board[i][j]-'0';
-                if(row[i].count(curr)>0 || col[j].count(curr)>0 || block[(i/3)*3 + j/3].count(curr)>0)
-                    return false;
-                row[i].insert(curr);
-                col[j].insert(curr);
-                block[(i/3)*3+j/3].insert(curr);
-            }
+bool issafe(int row, int col, vector<vector<char>>& board) {
+    char ch = board[row][col]; // value in the current cell
+
+    // Check same row
+    for (int i = 0; i < 9; i++) {
+        if (i != col && board[row][i] == ch)
+            return false;
+    }
+
+    // Check same column
+    for (int i = 0; i < 9; i++) {
+        if (i != row && board[i][col] == ch)
+            return false;
+    }
+
+    // Check same block
+    int startRow = 3 * (row / 3);
+    int startCol = 3 * (col / 3);
+    for (int i = startRow; i < startRow + 3; i++) {
+        for (int j = startCol; j < startCol + 3; j++) {
+            if (i != row && j != col && board[i][j] == ch)
+                return false;
         }
-        return true;
+    }
+
+    return true;
+}
+    bool isValidSudoku(vector<vector<char>>& board) {
+        int n=board.size();
+    for(int i=0;i<n;i++){
+       for(int j=0;j<n;j++){
+           if(board[i][j]!='.'){
+               if(issafe(i,j,board)==false)
+               return false;
+           }
+       }
+    }
+return true;
+   
     }
 };
