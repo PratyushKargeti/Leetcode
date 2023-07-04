@@ -1,12 +1,29 @@
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>>res;
-        sort(nums.begin(), nums.end());
-        do
+    void solve(vector<int>&ds,vector<vector<int>>&ans,vector<bool>&visited,vector<int>&nums)
+    {
+        if(ds.size()==nums.size())
         {
-            res.push_back(nums);
-        }while(next_permutation(nums.begin(),nums.end()));
-        return res;
+            ans.push_back(ds);
+            return;
+        }
+        for(int i=0;i<nums.size();i++)
+        {
+            if(visited[i]==false)
+            {
+                ds.push_back(nums[i]);
+                visited[i]=true;
+                solve(ds,ans,visited,nums);
+                ds.pop_back();
+                visited[i]=false;
+            }
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>ds;
+        vector<bool>visited(nums.size(),false);
+        solve(ds,ans,visited,nums);
+        return ans;              
     }
 };
