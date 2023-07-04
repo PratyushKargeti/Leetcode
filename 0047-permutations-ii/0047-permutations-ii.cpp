@@ -1,26 +1,31 @@
 class Solution {
 public:
-    void solve(int ind,vector<vector<int>>&ans,vector<int>&nums)
+    void solve(vector<int>&ds,vector<bool>&visited,vector<vector<int>>&ans,vector<int>&nums)
     {
-        if(ind==nums.size())
+        if (ds.size() == nums.size())
         {
-            ans.push_back(nums);
+            ans.push_back(ds);
             return;
         }
-        unordered_set<int>S;
-        for(int i=ind;i<nums.size();i++)
+        for (int i=0;i<nums.size();i++)
         {
-           if(S.find(nums[i])!=S.end()) continue;
-            S.insert(nums[i]);
-            swap(nums[ind],nums[i]);
-            solve(ind+1,ans,nums);
-            swap(nums[ind],nums[i]);
+            if (visited[i]==false)
+            {
+                if(i>0 && nums[i]==nums[i - 1] && !visited[i-1]) continue;
+                ds.push_back(nums[i]);
+                visited[i] = true;
+                solve(ds,visited,ans,nums);
+                ds.pop_back();
+                visited[i] = false;
+            }
         }
     }
     vector<vector<int>> permuteUnique(vector<int>& nums) {
+        sort(nums.begin(), nums.end()); 
         vector<vector<int>>ans;
-        sort(nums.begin(),nums.end());
-        solve(0,ans,nums);
+        vector<int> ds;
+        vector<bool> visited(nums.size(), false);
+        solve(ds,visited,ans,nums);
         return ans;
     }
 };
