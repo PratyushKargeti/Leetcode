@@ -4,7 +4,8 @@ public:
     {
         if(ind==nums.size())
         {
-            ans.push_back(nums);        
+            ans.push_back(nums); 
+            return;   
         }
         for(int i=ind;i<nums.size();i++)
         {
