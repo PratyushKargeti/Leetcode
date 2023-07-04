@@ -1,33 +1,32 @@
 class Solution {
 public:
-    bool issafe(int row, int col, vector<vector<char>>& board, char ch) {
-        for (int i = 0; i < 9; i++) 
-        {
-            if(i != col && board[row][i] == ch) // same row check 
-                return false;
-            if (i != row && board[i][col] == ch) // same column check
-                return false;
-            int startRow = 3 * (row / 3) + i / 3;
-            int startCol = 3 * (col / 3) + i % 3;
-            if((startRow != row || startCol != col) && board[startRow][startCol] == ch) // same block check
-                return false;
-        }
-        return true;
-    }
     bool isValidSudoku(vector<vector<char>>& board) {
-        int n=board.size();
-        for(int i=0;i<n;i++)
-        {
-            for(int j=0;j<n;j++)
-            {
-                char ch=board[i][j];
-                if(ch!='.')
-                {
-                    if(issafe(i,j,board,ch)==false)
-                        return false;
+        //since we have to verify that each element is appears once or not... for that purpose here we use 
+        //vector of sets since set stores only unique entries
+        vector<set<int>> rows(9),cols(9),blocks(9); 
+        
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                //if board[i][j] entry is '.' then we just continue as we only care about the duplicate values
+                if(board[i][j] == '.'){
+                    continue;
                 }
+                
+                int curr = board[i][j]; //we can get the value at given index to check that if it is already 
+                // present in set or not
+                
+                //here our count function returns 1 if value is already present in row or column or block otherwise it will return 0
+       
+                if(rows[i].count(curr) || cols[j].count(curr) ||
+                  blocks[(i/3)*3 + j/3].count(curr)){
+                    return false; //we return false because the value currently we have is already present in set
+                }
+                //if we don't found the value then after that we must enter this value in our set
+                rows[i].insert(curr);
+                cols[j].insert(curr);
+                blocks[(i/3*3) + j/3].insert(curr);
             }
         }
-        return true;
-   }
+        return true; //after loop finishes our control reaches here that means our sudoko is valid...
+    }
 };
