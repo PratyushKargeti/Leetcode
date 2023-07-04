@@ -1,42 +1,41 @@
 class Solution {
 public:
-    bool issafe(int currRow,vector<int>&col)
+    void solve(int col,vector<string>&board,vector<vector<string>>&ans,vector<int>&leftrow,vector<int>&lowerdiagonal,vector<int>&upperdiagonal,int n)
     {
-        for(int row=0;row < currRow;row++)
-        {
-            if(col[currRow]==col[row] || abs(col[currRow]-col[row])==currRow-row)
-                return false;
-        }
-        return true;
-    }
-    void place(int i,int n,vector<int>&col,vector<string>&board,vector<vector<string>>&ans)
-    {
-        if(i==n)
+        if(col==n)
         {
             ans.push_back(board);
             return;
         }
-        for(int j=0;j<n;j++)
+        for(int row=0;row<n;row++)
         {
-            col[i]=j;
-            if(issafe(i,col))
+            if(!leftrow[row] && !lowerdiagonal[row+col] && !upperdiagonal[n-1+col-row])
             {
-                board[i][j]='Q';
-                place(i+1,n,col,board,ans);
-                board[i][j]='.';
+                board[row][col]='Q';
+                leftrow[row]=1;
+                lowerdiagonal[row+col]=1;
+                upperdiagonal[n-1+col-row]=1;
+                solve(col+1,board,ans,leftrow,lowerdiagonal,upperdiagonal,n);
+                board[row][col]='.';
+                leftrow[row]=0;
+                lowerdiagonal[row+col]=0;
+                upperdiagonal[n-1+col-row]=0;
             }
         }
     }
-
     vector<vector<string>> solveNQueens(int n) {
-        vector<int>col(n);
-        vector<string> board(n);
         vector<vector<string>>ans;
+        vector<string> board(n);
+        string s(n,'.');
         for(int i=0;i<n;i++)
         {
-            board[i]=string(n,'.');
+            board[i]=s;
         }
-        place(0,n,col,board,ans);
+        //maintain hashes
+        vector<int>leftrow(n,0);
+        vector<int>lowerdiagonal(2*n-1,0);
+        vector<int>upperdiagonal(2*n-1,0);
+        solve(0,board,ans,leftrow,lowerdiagonal,upperdiagonal,n);
         return ans;
     }
 };
