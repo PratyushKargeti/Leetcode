@@ -1,14 +1,14 @@
 class Solution {
 public:
-    bool issafe(vector<vector<char>>&board,int i,int j,char ch)
+    bool issafe(vector<vector<char>>&board,int row,int col,char ch)
     {
-        for(int p=0;p<9;p++)
+        for(int i=0;i<9;i++)
         {
-            if(board[i][p]==ch) //same row check
+            if(board[row][i]==ch) //same row check
                 return false;
-            if(board[p][j]==ch) //same column check
+            if(board[i][col]==ch) //same column check
                 return false;
-            if(board[(i/3)*3+p/3][(j/3)*3+p%3]==ch)  //same block check
+            if(board[3*(row/3)+i/3][3*(col/3)+i%3]==ch)  //same block check
                 return false;
         }
         return true;
@@ -16,20 +16,20 @@ public:
 
     bool solve(vector<vector<char>>& board)
     {
-        for(int i=0;i<9;i++)
+        for(int row=0;row<9;row++)
         {
-            for(int j=0;j<9;j++)
+            for(int col=0;col<9;col++)
             {
-                if(board[i][j]=='.')
+                if(board[row][col]=='.')
                 {
                     for(char ch='1';ch<='9';ch++)
                     {
-                        if(issafe(board,i,j,ch))
+                        if(issafe(board,row,col,ch))
                         {
-                            board[i][j]=ch;  
+                            board[row][col]=ch;  
                             if(solve(board)==true) //solve rest of the board
                                 return true; 
-                            board[i][j]='.'; //current digit is invalid
+                            board[row][col]='.'; //current digit is invalid
                         }
                     }
                     return false;  //if no digit was valid on current empty cell
