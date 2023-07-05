@@ -1,3 +1,9 @@
+static auto _enhancer = []()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    return 0;
+}();
 class Solution {
 public:
     int longestSubarray(vector<int>& nums) {
