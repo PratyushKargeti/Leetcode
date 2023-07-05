@@ -4,7 +4,7 @@ public:
         string s="";
         for(int i=1;i<=n;i++)
             s+=to_string(i);
-        for(int i=0;i<k-1;i++)
+        for(int i=1;i<k;i++)
         {
             next_permutation(s.begin(),s.end());
         }
