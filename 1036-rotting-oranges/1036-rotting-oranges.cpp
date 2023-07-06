@@ -9,7 +9,7 @@ public:
         {
             for(int j=0;j<n;j++)
             {
-                if(grid[i][j]==2)
+                if(grid[i][j]==2) //push rotten oranges into queue with 0 time
                 {
                     q.push({{i,j},0});
                     visited[i][j]=true;
@@ -31,12 +31,13 @@ public:
                 int newy=y+moves[i][1];
                 if(newx>=0 && newx<m && newy>=0 && newy<n && visited[newx][newy]==false && grid[newx][newy]==1)
                 {
-                    q.push({{newx,newy},time+1});
+                    q.push({{newx,newy},time+1}); // since bfs is used nearest unrotten oranges to a rotten orange will be give increased time(+1)
                     visited[newx][newy]=true;
                 }
             }
         }
-        for(int i=0;i<m;i++)
+        //check for still left unrotten oranges
+        for(int i=0;i<m;i++) 
         {
             for(int j=0;j<n;j++)
             {
