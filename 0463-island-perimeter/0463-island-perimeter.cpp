@@ -61,7 +61,7 @@ public:
                     perimeter += 4; // Add 4 sides for each land cell
 
 //When counting the perimeter of the island, we need to account for shared sides between adjacent land cells. Each land cell has four sides, and when two neighboring land cells share a side, we need to deduct one side from each cell to avoid double-counting. 
- //for one it will be left side, for other it will right
+ //for one it will be left side, for other it will right side which has adjacent cell..so both can be removed from ans
                     // Check left cell
                     if (j > 0 && grid[i][j - 1] == 1)
                         perimeter -= 2; // Deduct 2 sides (left and right)
