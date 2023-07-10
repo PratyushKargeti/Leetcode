@@ -11,24 +11,24 @@
  */
 class Solution {
 public:
-    int mini=INT_MAX;
-    void dfs(TreeNode* root,int ans)
+    int ans=INT_MAX;
+    void dfs(TreeNode* root,int cnt)
     {
         if(root==NULL)
             return;
-        ans++;
+        cnt++;
         if(root->left==NULL && root->right==NULL)
         {    
-            mini=min(mini,ans);
+            ans=min(ans,cnt);
             return;
         }
-        dfs(root->left,ans);
-        dfs(root->right,ans);
+        dfs(root->left,cnt);
+        dfs(root->right,cnt);
     }
     int minDepth(TreeNode* root) {
         if(root==NULL)
             return 0;
         dfs(root,0);
-        return mini;
+        return ans;
     }
 };
