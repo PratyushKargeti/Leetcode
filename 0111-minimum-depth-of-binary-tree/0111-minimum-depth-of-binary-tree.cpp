@@ -11,8 +11,7 @@
  */
 class Solution {
 public:
-    //int ans=0;
-    vector<int>res;
+    int mini=INT_MAX;
     void dfs(TreeNode* root,int ans)
     {
         if(root==NULL)
@@ -20,20 +19,16 @@ public:
         ans++;
         if(root->left==NULL && root->right==NULL)
         {    
-            //ans++;
-            res.push_back(ans);
+            mini=min(mini,ans);
             return;
         }
         dfs(root->left,ans);
-        //ans--;
         dfs(root->right,ans);
     }
     int minDepth(TreeNode* root) {
         if(root==NULL)
             return 0;
         dfs(root,0);
-        auto it=min_element(res.begin(),res.end());
-        int k=*it;
-        return k;
+        return mini;
     }
 };
