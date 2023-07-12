@@ -25,7 +25,6 @@ public:
             {
                 if(board[i][j]=='X' && visited[i][j]==0)
                 {
-                    cout<<i<<" "<<j<<endl;
                     count++;
                     dfs(i,j,board,visited,moves,m,n);
                 }
