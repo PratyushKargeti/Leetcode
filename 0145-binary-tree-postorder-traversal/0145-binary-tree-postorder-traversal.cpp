@@ -13,12 +13,11 @@ class Solution {
 public:
     vector<int>ans;
     vector<int> postorderTraversal(TreeNode* root) {
-        if(root!=NULL)
-        {
-            ans=postorderTraversal(root->left);
-            ans=postorderTraversal(root->right);
-            ans.push_back(root->val);
-        }
+        if(root==NULL)
+            return ans;
+        postorderTraversal(root->left);
+        postorderTraversal(root->right);
+        ans.push_back(root->val);
         return ans;
     }
 };
