@@ -1,10 +1,5 @@
 class Solution {
 public:
-    void addEdge(vector<int>adj[],int u,int v)
-    {
-        adj[u].push_back(v);
-    }
-
     bool topological_sort(vector<int> adj[],int V) 
     {
         vector<int> indegrees(V,0); // initialize indegrees to 0 for all vertices
@@ -41,13 +36,10 @@ public:
         vector<int>adj[V];
         for(int i=0;i<prerequisites.size();i++)
         {
-            for(int j=0;j<prerequisites[i].size();j++)
-            {
-                int u=prerequisites[i][1];
-                int v=prerequisites[i][0];
-                addEdge(adj,u,v);
-            }   
-        }
+            int u=prerequisites[i][1];
+            int v=prerequisites[i][0];
+            adj[u].push_back(v);
+        }   
         return topological_sort(adj,V);
     }
 };
