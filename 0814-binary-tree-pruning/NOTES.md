@@ -1,21 +1,24 @@
-// class Solution {
-// public:
-//     TreeNode* postorder(TreeNode* root){
-//         if(root==NULL) return NULL;
-//         TreeNode* left=postorder(root->left);
-//         TreeNode* right=postorder(root->right);
-//         if(left==NULL && right==NULL && root->val==0)
-//         {
-//             delete root;
-//             return NULL;
-//         }
-//         else
-//             return root;
-//     }
-//     TreeNode* pruneTree(TreeNode* root){
-//         return postorder(root);
-//     }
-// };
+WRONG WAY:
+class Solution {
+ public:
+     TreeNode* postorder(TreeNode* root){
+         if(root==NULL) return NULL;
+         TreeNode* left=postorder(root->left);
+         TreeNode* right=postorder(root->right);
+         if(left==NULL && right==NULL && root->val==0)
+         {
+             delete root;
+             return NULL;
+         }
+         else
+             return root;
+     }
+     TreeNode* pruneTree(TreeNode* root){
+         return postorder(root);
+     }
+ };
+
+ CORRECT WAY:
 class Solution {
 public:
     TreeNode* postorder(TreeNode* root) {
