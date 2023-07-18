@@ -1,3 +1,39 @@
+// class Solution {
+// public:
+//     TreeNode* postorder(TreeNode* root){
+//         if(root==NULL) return NULL;
+//         TreeNode* left=postorder(root->left);
+//         TreeNode* right=postorder(root->right);
+//         if(left==NULL && right==NULL && root->val==0)
+//         {
+//             delete root;
+//             return NULL;
+//         }
+//         else
+//             return root;
+//     }
+//     TreeNode* pruneTree(TreeNode* root){
+//         return postorder(root);
+//     }
+// };
+class Solution {
+public:
+    TreeNode* postorder(TreeNode* root) {
+        if (root == NULL) return NULL;
+        
+        root->left = postorder(root->left);
+        root->right = postorder(root->right);
+        // If the current node is a leaf node with value 0, prune it.
+        if (root->left == NULL && root->right == NULL && root->val == 0) 
+            return NULL;
+        else
+            return root;
+    }
+    
+    TreeNode* pruneTree(TreeNode* root) {
+        return postorder(root);
+    }
+};
 ​The first way of implementing the code is incorrect because it deletes the node using `delete root` when pruning a subtree. This causes a runtime error because it leads to a heap-use-after-free issue. Once the node is deleted, the memory associated with it is deallocated, and any further access to that memory results in undefined behavior.
 
 The correct approach, as shown in the second implementation, is to simply set the left and right pointers of the nodes that need to be pruned to `nullptr`. This approach avoids deleting the nodes and instead modifies the structure of the tree.
