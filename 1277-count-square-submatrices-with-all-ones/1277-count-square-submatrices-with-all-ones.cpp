@@ -10,7 +10,8 @@ public:
         for(int i=0;i<m;i++) dp[i][0]=mat[i][0];//copy 1st row
         for(int i=0;i<n;i++) dp[0][i]=mat[0][i];//copy 1st col
         
-        //to fill dp(i,j) for other cases starting from mat(1,1), we take minimal of no. of squares formed at upper left diagonal index,upper index and left index of dp table and add one for biggest square ending at (i,j)  
+        //to fill dp(i,j) for other cases starting from mat(1,1), we take minimal of no. of squares formed at upper 
+        //left diagonal index,upper index and left index of dp table and add one for biggest square ending at (i,j)  
         for(int i=1;i<m;i++)
         {
             for(int j=1;j<n;j++)
