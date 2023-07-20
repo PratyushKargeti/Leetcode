@@ -1,6 +1,9 @@
 class Solution {
 public:
-    //we use prefix sum(sum of all elements from 0 to current index) technique, say there are two subarrays which end at index i and they started at different index j1 and j2 (j1<j2<i) and they both had sum k, then there must be two subarrays from 0 to j1-1 and 0 to j2-1 whose prefix sum was s-k where s is prefix sum achieved till current index,so the count of subarrays with sum k found till current index i is same as count of s-k prefix sum subarrays
+    //we use prefix sum(sum of all elements from 0 to current index) technique, say there are two subarrays which end 
+//at index i and they started at different index j1 and j2 (j1<j2<i) and they both had sum k, then there must be two subarrays
+//from 0 to j1-1 and 0 to j2-1 whose prefix sum was s-k where s is prefix sum achieved till current index,so the count of subarrays 
+//with sum k found till current index i is same as count of s-k prefix sum subarrays
     int subarraySum(vector<int>& nums, int k) {
         map<int,int>m; //stores prefix sum and its count in given array
         m[0]=1; //since prefix sum at beginning is 0,we take its count as 1(assume like subarray [] for sum 0) //has significance in further calculation
