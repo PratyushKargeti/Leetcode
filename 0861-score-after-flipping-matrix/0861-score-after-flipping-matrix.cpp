@@ -1,7 +1,8 @@
 class Solution {
 public:
-// 1) flip rows that start with 0
-// 2) flip cols that have more zeroes than ones
+    //STRATEGY
+// 1) flip rows that start with 0 (pretty obvious as we need max binary no. in any row in order to maximise overall score)
+// 2) flip cols that have more zeroes than ones(we should prioritize flipping columns that have more 0's than 1's. Flipping such columns will increase the binary numbers' values in the corresponding rows)
 // 3) find sum of binary number in each row
     int matrixScore(vector<vector<int>>& grid) {
         int m=grid.size();
