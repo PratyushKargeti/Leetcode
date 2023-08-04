@@ -33,7 +33,7 @@ private:
         if(dp[start] != -1) return dp[start];
         for(int i=start; i<s.size();i++)
         {
-            if(set.count(s.substr(start, i+1-start)) && wordBreak(i+1,dp,s, set))
+            if(set.count(s.substr(start,i+1-start)) && wordBreak(i+1,dp,s,set))
                 return dp[start]=true;
         }
         return dp[start]=false;
