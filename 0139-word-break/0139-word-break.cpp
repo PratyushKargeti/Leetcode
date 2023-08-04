@@ -14,7 +14,7 @@ public:
             {
                 if(visited[end]==false)
                 {
-                    if(set.find(s.substr(start,end-start))!=set.end())
+                    if(set.count(s.substr(start,end-start)))
                     {
                         q.push(end);
                         visited[end]=true;
