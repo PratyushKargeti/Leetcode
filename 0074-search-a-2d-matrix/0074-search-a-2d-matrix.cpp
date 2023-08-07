@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& mat, int target) {
+         //this way is valid only for this question..here The first integer of each row is greater than the last integer of the previous row.
         int m=mat.size();
         int n=mat[0].size();
         int low=0;
@@ -20,5 +21,38 @@ public:
             }
         }
         return false;
+        //O(m*n)
+        // for(int i=0;i<matrix.size();i++)
+        // {
+        //     for(int j=0;j<matrix[i].size();j++)
+        //     {
+        //         if(matrix[i][j]==target)
+        //         {
+        //             return true;
+        //         }
+        //     }
+        // }
+        // return false;
+        
+        //O(m*log(n))
+        // int i=0;
+        // int m=mat.size();
+        // int n=mat[i].size();
+        // for(int i=0;i<m;i++)
+        // {
+        //     int low=0;
+        //     int high=n-1;
+        //     while(low<=high)
+        //     {
+        //         int mid=low+(high-low)/2;
+        //         if(mat[i][mid]==target)
+        //             return true;
+        //         else if(mat[i][mid]>target)
+        //             high=mid-1;
+        //         else
+        //             low=mid+1;
+        //     }
+        // }
+        // return false;
     }
 };
