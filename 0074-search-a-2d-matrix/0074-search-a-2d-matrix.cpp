@@ -22,11 +22,11 @@ public:
         }
         return false;
         //O(m*n)
-        // for(int i=0;i<matrix.size();i++)
+        // for(int i=0;i<mat.size();i++)
         // {
-        //     for(int j=0;j<matrix[i].size();j++)
+        //     for(int j=0;j<mat[i].size();j++)
         //     {
-        //         if(matrix[i][j]==target)
+        //         if(mat[i][j]==target)
         //         {
         //             return true;
         //         }
