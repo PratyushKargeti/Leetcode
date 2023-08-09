@@ -24,11 +24,11 @@ public:
             // we decrease the current frequency and add it back to the queue   
             if(pq.top()==maxfreq)
             {
+                cnt++;
                 if(maxfreq>1) 
                 {
                     pq.push(maxfreq-1);
                 }   
-                cnt++;
             }
         }
         return cnt;
